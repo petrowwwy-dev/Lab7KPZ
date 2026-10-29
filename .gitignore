@@ -24,3 +24,5 @@ hs_err_pid*
 replay_pid*
 
 orders_db.txt
+out/
+bin/

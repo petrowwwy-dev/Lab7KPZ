@@ -20,6 +20,6 @@ public class OrderPriceCalculator {
         BigDecimal taxAmount = taxableSubtotal.multiply(VAT_RATE);
         BigDecimal total = taxableSubtotal.add(taxAmount);
 
-        return new OrderTotals(subtotal, discountAmount, taxAmount, total);
+        return new OrderTotals(subtotal, discountAmount, VAT_RATE, taxAmount, total);
     }
 }

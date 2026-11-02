@@ -22,12 +22,17 @@ public class InvoiceHtmlFormatter {
         html.append("<p>Проміжна сума: ").append(totals.subtotal()).append(" грн</p>");
         html.append("<p>Знижка (").append(order.category().label()).append("): -")
                 .append(totals.discountAmount()).append(" грн</p>");
-        html.append("<p>ПДВ (20%): ").append(totals.taxAmount()).append(" грн</p>");
+        html.append("<p>ПДВ (").append(vatPercent(totals)).append("%): ")
+            .append(totals.taxAmount()).append(" грн</p>");
         html.append("<h3>Загалом до сплати: ")
                 .append(totals.total().setScale(2, RoundingMode.HALF_UP))
                 .append(" грн</h3>");
         html.append("</body></html>");
 
         return html.toString();
+    }
+
+    private String vatPercent(OrderTotals totals) {
+        return totals.vatRate().movePointRight(2).stripTrailingZeros().toPlainString();
     }
 }
